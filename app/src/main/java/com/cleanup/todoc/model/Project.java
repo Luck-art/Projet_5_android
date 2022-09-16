@@ -16,14 +16,12 @@ import androidx.room.PrimaryKey;
  */
 
 @Entity // table Project
-
 public class Project {
     /**
      * The unique identifier of the project
      */
 
     @PrimaryKey
-
     private final long id;
 
     /**

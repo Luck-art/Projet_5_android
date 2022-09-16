@@ -20,15 +20,12 @@ import java.util.Comparator;
     parentColumns = "id",
 
     childColumns = "projectId"))
-
-
 public class Task {
     /**
      * The unique identifier of the task
      */
 
     @PrimaryKey(autoGenerate = true) // Room generate unique id automatically
-
     private long id;
 
     /**
