@@ -7,6 +7,10 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import com.cleanup.todoc.model.Project;
+import com.cleanup.todoc.model.Task;
+
+import java.util.List;
+import java.util.Map;
 
 // Regroup CRUD actions for table Project
 
@@ -19,6 +23,10 @@ public interface ProjectDao {
 	void createProject(Project project);
 
 	@Query("SELECT * FROM Project WHERE id = :projectId")
-	LiveData<Project> getProject(long projectId);
+	Project getProject(long projectId);
+
+
+	@Query("SELECT * FROM Project")
+	List<Project> getProjects();
 
 }
