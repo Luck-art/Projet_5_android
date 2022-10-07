@@ -22,7 +22,7 @@ public class Project {
      */
 
     @PrimaryKey
-    private final long id;
+    public final long id;
 
     /**
      * The name of the project

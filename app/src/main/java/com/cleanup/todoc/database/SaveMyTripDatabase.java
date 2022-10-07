@@ -43,6 +43,8 @@ public abstract class SaveMyTripDatabase extends RoomDatabase {
 
 									SaveMyTripDatabase.class, "Cleanup.db")
 
+							.allowMainThreadQueries()
+
 							.addCallback(prepopulateDatabase())
 
 							.build();
@@ -67,7 +69,12 @@ public abstract class SaveMyTripDatabase extends RoomDatabase {
 
 				super.onCreate(db);
 
-				Executors.newSingleThreadExecutor().execute(() -> INSTANCE.projectDao().createProject(new Project(0, "", 0)));
+				Executors.newSingleThreadExecutor().execute(() ->{
+					for (Project allProject : Project.getAllProjects()) {
+						INSTANCE.projectDao().createProject(allProject);
+					}
+
+				});
 
 			}
 

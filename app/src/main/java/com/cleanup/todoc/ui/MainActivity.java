@@ -109,6 +109,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
                 showAddTaskDialog();
             }
         });
+        updateTasks();
     }
 
     @Override
@@ -138,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
 
     @Override
     public void onDeleteTask(Task task) {
-        tasks.remove(task);
+        SaveMyTripDatabase.getInstance(this).taskDao().deleteTask(task.getId());
         updateTasks();
     }
 
@@ -211,7 +212,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
      * @param task the task to be added to the list
      */
     private void addTask(@NonNull Task task) {
-        tasks.add(task);
+        SaveMyTripDatabase.getInstance(this).taskDao().insertTask(task);
         updateTasks();
     }
 

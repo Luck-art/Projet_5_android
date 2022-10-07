@@ -10,24 +10,21 @@ import androidx.room.PrimaryKey;
 
 import java.util.Comparator;
 
-/**
- * <p>Model for the tasks of the application.</p>
- *
- * @author Gaëtan HERFRAY
- */
 
 @Entity(foreignKeys = @ForeignKey(entity = Project.class,  // table Task
 
     parentColumns = "id",
 
     childColumns = "projectId"))
+
+
 public class Task {
     /**
      * The unique identifier of the task
      */
 
     @PrimaryKey(autoGenerate = true) // Room generate unique id automatically
-    private long id;
+    public long id;
 
     /**
      * The unique identifier of the project associated to the task
