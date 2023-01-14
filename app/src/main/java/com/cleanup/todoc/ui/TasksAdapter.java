@@ -11,8 +11,7 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cleanup.todoc.R;
-import com.cleanup.todoc.database.SaveMyTripDatabase;
-import com.cleanup.todoc.database.dao.ProjectDao;
+import com.cleanup.todoc.database.TodocDatabase;
 import com.cleanup.todoc.model.Project;
 import com.cleanup.todoc.model.Task;
 
@@ -153,7 +152,7 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.TaskViewHold
             lblTaskName.setText(task.getName());
             imgDelete.setTag(task);
 
-            final Project taskProject = SaveMyTripDatabase.getInstance(imgProject.getContext()).projectDao().getProject(task.projectId);
+            final Project taskProject = TodocDatabase.getInstance(imgProject.getContext()).projectDao().getProject(task.projectId);
             if (taskProject != null) {
                 imgProject.setSupportImageTintList(ColorStateList.valueOf(taskProject.getColor()));
                 lblProjectName.setText(taskProject.getName());

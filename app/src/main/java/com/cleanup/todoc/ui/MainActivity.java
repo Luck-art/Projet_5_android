@@ -20,8 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cleanup.todoc.R;
-import com.cleanup.todoc.database.SaveMyTripDatabase;
-import com.cleanup.todoc.database.dao.ProjectDao;
+import com.cleanup.todoc.database.TodocDatabase;
 import com.cleanup.todoc.model.Project;
 import com.cleanup.todoc.model.Task;
 
@@ -137,7 +136,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
 
     @Override
     public void onDeleteTask(Task task) {
-        SaveMyTripDatabase.getInstance(this).taskDao().deleteTask(task.getId());
+        TodocDatabase.getInstance(this).taskDao().deleteTask(task.getId());
         updateTasks();
     }
 
@@ -210,7 +209,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
      * @param task the task to be added to the list
      */
     private void addTask(@NonNull Task task) {
-        SaveMyTripDatabase.getInstance(this).taskDao().insertTask(task);
+        TodocDatabase.getInstance(this).taskDao().insertTask(task);
         updateTasks();
     }
 
@@ -218,7 +217,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
      * Updates the list of tasks in the UI
      */
     private void updateTasks() {
-        List<Task> newTasks = SaveMyTripDatabase.getInstance(this).taskDao().getTasks();
+        List<Task> newTasks = TodocDatabase.getInstance(this).taskDao().getTasks();
         this.tasks.clear();
         this.tasks.addAll(newTasks);
         if (tasks.size() == 0) {
@@ -294,7 +293,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
      */
     private void populateDialogSpinner() {
         Context context = MainActivity.this;
-        final ArrayAdapter<Project> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, SaveMyTripDatabase.getInstance(context).projectDao().getProjects());
+        final ArrayAdapter<Project> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, TodocDatabase.getInstance(context).projectDao().getProjects());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         if (dialogSpinner != null) {
             dialogSpinner.setAdapter(adapter);

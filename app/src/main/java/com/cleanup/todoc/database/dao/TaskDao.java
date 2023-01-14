@@ -15,7 +15,6 @@ import java.util.List;
 // Regroup CRUD actions for table Task
 
 	@Dao
-
 	public interface TaskDao {
 
 		@Query("SELECT * FROM Task WHERE projectId = :projectId")
@@ -28,15 +27,12 @@ import java.util.List;
 		List<Task> getTasks();
 
 		@Insert
-
 		long insertTask(Task task); // Create task for Room with object (Room create id automatically)
 
 		@Update
-
 		int updateTask(Task task); // Update task for Room with object (We need to create the id for this object)
 
 		@Query("DELETE FROM Task WHERE id = :taskId")
-
 		int deleteTask(long taskId); // Delete task for Room (@Query for SQL request)
 
 	}

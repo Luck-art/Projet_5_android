@@ -16,12 +16,11 @@ import com.cleanup.todoc.model.Task;
 import java.util.concurrent.Executors;
 
 @Database(entities = {Task.class, Project.class}, version = 1, exportSchema = false) // @Database for Entities tables
-
-public abstract class SaveMyTripDatabase extends RoomDatabase {
+public abstract class TodocDatabase extends RoomDatabase {
 
 	// --- SINGLETON ---
 
-	private static volatile SaveMyTripDatabase INSTANCE; // design pattern
+	private static volatile TodocDatabase INSTANCE; // design pattern
 
 	// --- DAO ---
 
@@ -31,17 +30,17 @@ public abstract class SaveMyTripDatabase extends RoomDatabase {
 
 	// --- INSTANCE ---
 
-	public static SaveMyTripDatabase getInstance(Context context) {
+	public static TodocDatabase getInstance(Context context) {
 
 		if (INSTANCE == null) {
 
-			synchronized (SaveMyTripDatabase.class) {
+			synchronized (TodocDatabase.class) {
 
 				if (INSTANCE == null) {
 
 					INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
 
-									SaveMyTripDatabase.class, "Cleanup.db")
+									TodocDatabase.class, "Cleanup.db")
 
 							.allowMainThreadQueries()
 
@@ -60,7 +59,6 @@ public abstract class SaveMyTripDatabase extends RoomDatabase {
 	}
 
 	private static Callback prepopulateDatabase() {
-
 		return new Callback() {
 
 			@Override
