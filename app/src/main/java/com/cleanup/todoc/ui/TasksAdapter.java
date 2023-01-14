@@ -153,7 +153,7 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.TaskViewHold
             lblTaskName.setText(task.getName());
             imgDelete.setTag(task);
 
-            final Project taskProject = SaveMyTripDatabase.getInstance(imgProject.getContext()).projectDao().getProject(task.projectId); // modify getProject() to project
+            final Project taskProject = SaveMyTripDatabase.getInstance(imgProject.getContext()).projectDao().getProject(task.projectId);
             if (taskProject != null) {
                 imgProject.setSupportImageTintList(ColorStateList.valueOf(taskProject.getColor()));
                 lblProjectName.setText(taskProject.getName());

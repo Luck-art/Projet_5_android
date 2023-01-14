@@ -14,11 +14,9 @@ import java.util.Map;
 // Regroup CRUD actions for table Project
 
 @Dao
-
 public interface ProjectDao {
 
 	@Insert(onConflict = OnConflictStrategy.REPLACE) // Increase existing project with a same id than the new project create
-
 	void createProject(Project project);
 
 	@Query("SELECT * FROM Project WHERE id = :projectId")

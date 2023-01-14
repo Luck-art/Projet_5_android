@@ -3,19 +3,21 @@ package com.cleanup.todoc.model;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Ignore;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 import java.util.Comparator;
 
 
-@Entity(foreignKeys = @ForeignKey(entity = Project.class,  // table Task
+@Entity(foreignKeys =  {@ForeignKey(entity = Project.class,  // table Task
 
     parentColumns = "id",
 
-    childColumns = "projectId"))
+    childColumns = "projectId")})
 
 
 public class Task {
@@ -29,6 +31,7 @@ public class Task {
     /**
      * The unique identifier of the project associated to the task
      */
+    @ColumnInfo(index = true)
     public long projectId;
 
     /**
